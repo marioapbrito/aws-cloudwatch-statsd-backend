@@ -155,6 +155,17 @@ you can use the `instances` key under `cloudwatch` to configure a list of config
         }
     }
 
+## Dimensions
+
+Emitting metrics with dimensions is supported, using collectd syntax, like so:
+
+`echo "test_namespace.[dim1=val1,dim2=val2]test_metric2_g:1|g" | nc statsd.local 8125`
+
+Please note that you will need to either disable or tweak the StatsD key sanitizer for it to work, otherwise brackets and equal signs will be stripped away.
+
+Disabling the key sanitizer in StatsD can be done by adding `config.keyNameSanitize = false;` to the config.
+
+Refer to StatsD documentation for more details.
 
 ## Tutorial
 
